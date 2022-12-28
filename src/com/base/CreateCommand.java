@@ -3,15 +3,15 @@ package com.base;
 class CreateCommand extends Command {
     String content;
 
-    public CreateCommand(Editor editor, String content) {
-        super(editor);
+    public CreateCommand(TODOList todo, String content) {
+        super(todo);
         this.content = content;
     }
 
     @Override
     public boolean execute() {
         Note note = new Note(content);
-        editor.addToList(note);
+        todo.addToList(note);
 
         return true;
     }

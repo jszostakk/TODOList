@@ -4,15 +4,15 @@ public class EditCommand extends Command {
     int index;
     String newContent;
 
-    public EditCommand(Editor editor, int index, String newContent) {
-        super(editor);
+    public EditCommand(TODOList todo, int index, String newContent) {
+        super(todo);
         this.index = index;
         this.newContent = newContent;
     }
 
     @Override
     public boolean execute() {
-        editor.editContent(index, newContent);
+        todo.editContent(index, newContent);
 
         return true;
     }

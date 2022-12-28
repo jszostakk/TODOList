@@ -2,7 +2,7 @@ package com.base;
 
 public class Main {
     public static void main(String[] args) {
-        Editor editor = new Editor();
-        editor.init();
+        TODOList todo = new TODOList();
+        todo.init();
     }
 }

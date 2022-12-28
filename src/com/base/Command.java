@@ -1,10 +1,10 @@
 package com.base;
 
 abstract class Command {
-    public Editor editor;
+    public TODOList todo;
 
-    Command(Editor editor) {
-        this.editor = editor;
+    Command(TODOList todo) {
+        this.todo = todo;
     }
 
     public abstract boolean execute();

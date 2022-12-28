@@ -3,14 +3,14 @@ package com.base;
 public class DeleteCommand extends Command {
     int index;
 
-    public DeleteCommand(Editor editor, int index) {
-        super(editor);
+    public DeleteCommand(TODOList todo, int index) {
+        super(todo);
         this.index = index;
     }
 
     @Override
     public boolean execute() {
-        editor.removeFromList(index);
+        todo.removeFromList(index);
 
         return true;
     }

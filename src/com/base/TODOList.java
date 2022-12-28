@@ -3,7 +3,7 @@ package com.base;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class Editor {
+class TODOList {
     private final ArrayList<Note> noteList = new ArrayList<>();
 
     public void addToList(Note note) {
@@ -24,7 +24,7 @@ class Editor {
     }
 
     public void init() {
-        Editor editor = this;
+        TODOList todo = this;
 
         Scanner scan = new Scanner(System.in);
         while (true) {
@@ -39,14 +39,14 @@ class Editor {
                         content.append(parts[i]).append(" ");
                     }
 
-                    CreateCommand c = new CreateCommand(editor, content.toString());
+                    CreateCommand c = new CreateCommand(todo, content.toString());
                     executeCommand(c);
 
                     break;
                 }
                 case "Delete" -> {
                     int index = Integer.parseInt(parts[1]);
-                    DeleteCommand c = new DeleteCommand(editor, index);
+                    DeleteCommand c = new DeleteCommand(todo, index);
                     executeCommand(c);
 
                     break;
@@ -60,7 +60,7 @@ class Editor {
                         content.append(parts[i]).append(" ");
                     }
 
-                    EditCommand c = new EditCommand(editor, index, content.toString());
+                    EditCommand c = new EditCommand(todo, index, content.toString());
                     executeCommand(c);
                     break;
                 }
