@@ -7,7 +7,7 @@ Projekt ma w założeniu tworzyć oraz przechowywać notatki w postaci ToDo list
 
 - ### Wzorce kreacyjne:
 
-  - Metoda Wytwórcza - stworzenie fabryki dla różnych typów notatek (nadklasa notatki i nadklasa fabryki)
+  - Fabryka Abstrakcyjna - stworzenie fabryki dla różnych typów notatek (nadklasa notatki i nadklasa fabryki)
 
   - Budowniczy - tworzenie konkretnych notatek, możliwość wyboru czy notatka ma posiadać tytuł/temat/ikonka/data/przypomnienie 
 
@@ -26,3 +26,15 @@ Projekt ma w założeniu tworzyć oraz przechowywać notatki w postaci ToDo list
   - Dekorator - przekazywanie notatek do bazy zakodowanych w base64 
 
   - Proxy - zwrócenie bazy notatek niepozwalającej na edycje cudzych notatek  
+
+
+## 3. Do zrobienia:
+ - Metoda wytworcza i budowniczy - Hubert
+ - Pamiatka - Kuba
+ - Singleton (baza Userow)
+ - Dekorator
+ - Proxy (do bazy notatek)
+ - klasa User (ma miec ID)
+ - owner ID do notatki
+ - finalne userID
+ - system logowania (pozniej moze zapis do pliku csv + bardzo opcjonalne kodowanie)
