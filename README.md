@@ -30,7 +30,7 @@ Projekt ma w założeniu tworzyć oraz przechowywać notatki w postaci ToDo list
 
 ## 3. Do zrobienia:
  - Metoda wytworcza i budowniczy - Hubert
- - Pamiatka - Kuba
+ - Pamiatka - Kuba - done
  - Singleton (baza Userow)
  - Dekorator
  - Proxy (do bazy notatek)
