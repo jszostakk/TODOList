@@ -58,8 +58,7 @@ class TODOList {
 
     private String insertSomething(Scanner scan){
         System.out.print("input-> ");
-        String something = scan.nextLine();
-        return something;
+        return scan.nextLine();
     }
 
     public void init() {
@@ -127,6 +126,9 @@ class TODOList {
                         LoadCommand c = new LoadCommand(todo, index, backups);
                         executeCommand(c);
                     }
+                }
+                case "exit" -> {
+                    return;
                 }
                 default -> {
                     HelpCommand c = new HelpCommand(todo);

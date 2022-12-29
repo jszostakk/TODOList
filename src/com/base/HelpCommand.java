@@ -8,7 +8,8 @@ public class HelpCommand extends Command {
             "\tTo edit existing note use command: \n\t\tEdit [ID of the note that you want to edit] [New content]",
             "\tTo print all your notes use command: \n\t\tPrint",
             "\tTo save all your notes use command: \n\t\tSave",
-            "\tTo load a backup use command: \n\t\tLoad"
+            "\tTo load a backup use command: \n\t\tLoad",
+            "\tTo exit me use command: \n\t\tExit"
     };
 
     public HelpCommand(TODOList todo) {
