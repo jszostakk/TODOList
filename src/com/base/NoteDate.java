@@ -2,7 +2,7 @@ package com.base;
 
 import java.util.Date;
 
-public class NoteDate {
+public class NoteDate implements NoteInterface {
     private String tag;
     private String text;
     private Date date;
@@ -26,7 +26,7 @@ public class NoteDate {
         this.date = date;
     }
 
-    public void setDone(Boolean done) {
-        this.done = done;
+    public void setDone() {
+        this.done = true;
     }
 }

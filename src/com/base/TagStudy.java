@@ -2,15 +2,16 @@ package com.base;
 
 import java.util.ArrayList;
 
-public class TagHealth implements Tag {
+public class TagStudy implements Tag{
     private static TagStudy instance;
     private final ArrayList<NoteInterface> noteList = new ArrayList<>();
     private NoteBuilderDate noteBuilderDate;
     private NoteBuilderWithoutDate noteBuilderWithoutDate;
 
+
     @Override
     public void addNote() {
-        System.out.println("To create note with date use command:\n\t 2, if Note without Date");
+
     }
 
     @Override

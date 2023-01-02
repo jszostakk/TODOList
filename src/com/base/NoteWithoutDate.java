@@ -2,7 +2,7 @@ package com.base;
 
 import java.util.Date;
 
-public class NoteWithoutDate {
+public class NoteWithoutDate implements NoteInterface{
     private String tag;
     private String text;
     private Boolean done = false;
@@ -20,7 +20,7 @@ public class NoteWithoutDate {
         this.text = text;
     }
 
-    public void setDone(Boolean done) {
-        this.done = done;
+    public void setDone() {
+        this.done = true;
     }
 }
