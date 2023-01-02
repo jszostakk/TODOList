@@ -1,6 +1,6 @@
 package com.base;
 
-class CreateCommand extends Command {
+public class CreateCommand extends Command {
     String content;
 
     public CreateCommand(TODOList todo, String content) {

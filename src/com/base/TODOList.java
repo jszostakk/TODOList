@@ -3,7 +3,7 @@ package com.base;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class TODOList {
+public class TODOList {
     private final ArrayList<Note> noteList = new ArrayList<>();
     private final ArrayList<Memento> backups = new ArrayList<>();
 
