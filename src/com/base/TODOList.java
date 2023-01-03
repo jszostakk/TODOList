@@ -1,14 +1,21 @@
 package com.base;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class TODOList {
     private final ArrayList<Note> noteList = new ArrayList<>();
     private final ArrayList<Memento> backups = new ArrayList<>();
+    private final TagStudy tagStudy = TagStudy.getInstance();
+    private final TagHealth tagHealth = TagHealth.getInstance();
 
-    public void addToList(Note note) {
-        this.noteList.add(note);
+    public void addToTagStudy(NoteInterface note) {
+        this.tagStudy.noteList.add(note);
+    }
+    public void addToTagHealth(NoteInterface note) {
+        this.tagHealth.noteList.add(note);
     }
 
     public void addToSaves(Memento memento) {
@@ -63,6 +70,8 @@ public class TODOList {
 
     public void init() {
         TODOList todo = this;
+        NoteBuilderDate builderDate = new NoteBuilderDate();
+        NoteBuilderWithoutDate builderWithoutDate = new NoteBuilderWithoutDate();
 
         HelpCommand initialHelp = new HelpCommand(todo);
         executeCommand(initialHelp);
@@ -76,14 +85,28 @@ public class TODOList {
 
             switch (parts[0]) {
                 case "create" -> {
-                    StringBuilder content = new StringBuilder();
+                    Scanner scanner = new Scanner(System.in);
+                    System.out.println("Write with spacebar :\n\tHealth or Study?\n\tDate or WithoutDate\n\tIf \"Date\", write it yyyy-MM-dd");
+                    String choice = insertSomething(scanner);
+                    String[] choiceParts = choice.split(" ");
+                    choiceParts[0] = choiceParts[0].toLowerCase();
+                    choiceParts[1] = choiceParts[1].toLowerCase();
 
+                    StringBuilder content = new StringBuilder();
                     for (int i = 1; i < parts.length; i++) {
                         content.append(parts[i]).append(" ");
                     }
+                    if (choiceParts[0].equals("health")) {
+                        if (choiceParts[1].equals("date")) {
+                            CreateCommand c = new CreateCommand(todo, content.toString(), builderDate, choiceParts[2], "Health");
+                            executeCommand(c);
+                        }
+                        else if (choiceParts[1].equals("withoutdate")) {
+                            CreateCommand c = new CreateCommand(todo, content.toString(), builderWithoutDate, "Health");
+                            executeCommand(c);
+                        }
+                    }
 
-                    CreateCommand c = new CreateCommand(todo, content.toString());
-                    executeCommand(c);
                 }
                 case "delete" -> {
                     int index = Integer.parseInt(parts[1]);
