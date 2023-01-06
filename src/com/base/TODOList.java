@@ -6,17 +6,25 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class TODOList {
-    private final ArrayList<Note> noteList = new ArrayList<>();
     private final ArrayList<Memento> backups = new ArrayList<>();
 
-    private final TagStudy tagStudy = TagStudy.getInstance();
     private final TagHealth tagHealth = TagHealth.getInstance();
+    private final TagStudy tagStudy = TagStudy.getInstance();
 
+
+    public void addToTagHealth(NoteInterface note) {
+        this.tagHealth.noteList.add(note);
+    }
     public void addToTagStudy(NoteInterface note) {
         this.tagStudy.noteList.add(note);
     }
-    public void addToTagHealth(NoteInterface note) {
-        this.tagHealth.noteList.add(note);
+
+    public TagHealth getTagHealth() {
+        return tagHealth;
+    }
+
+    public TagStudy getTagStudy() {
+        return tagStudy;
     }
 
     public void addToSaves(Memento memento) {
@@ -42,13 +50,13 @@ public class TODOList {
         return true;
     }
 
-    public ArrayList<Note> getNoteList() {
-        return noteList;
-    }
 
-    public void setNoteList(ArrayList<Note> notes) {
-        noteList.clear();
-        noteList.addAll(notes);
+
+    public void setNoteList(ArrayList<NoteInterface> healthNotes, ArrayList<NoteInterface> studyNotes) {
+        tagHealth.noteList.clear();
+        tagHealth.noteList.addAll(healthNotes);
+        tagStudy.noteList.clear();
+        tagStudy.noteList.addAll(studyNotes);
     }
 
     public void removeFromList(int choice, int index) {
@@ -161,7 +169,7 @@ public class TODOList {
 
                 }
                 case "save" -> {
-                    SaveCommand c = new SaveCommand(todo, getNoteList());
+                    SaveCommand c = new SaveCommand(todo, getTagHealth(), getTagStudy());
                     executeCommand(c);
                 }
                 case "load" -> {

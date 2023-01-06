@@ -10,13 +10,10 @@ public class LoadCommand extends Command {
         this.memento = mementos.get(index);
     }
 
-    public ArrayList<Note> restore() {
-        return memento.getBackup();
-    }
 
     @Override
     public boolean execute() {
-        todo.setNoteList(restore());
+        todo.setNoteList(memento.getHealthTagBackup(), memento.getStudyTagBackup());
 
         return true;
     }
