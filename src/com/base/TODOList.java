@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class TODOList {
     private final ArrayList<Note> noteList = new ArrayList<>();
     private final ArrayList<Memento> backups = new ArrayList<>();
+
     private final TagStudy tagStudy = TagStudy.getInstance();
     private final TagHealth tagHealth = TagHealth.getInstance();
 
@@ -50,13 +51,26 @@ public class TODOList {
         noteList.addAll(notes);
     }
 
-    public void removeFromList(int index) {
-        this.noteList.remove(index);
+    public void removeFromList(int choice, int index) {
+        if (choice == 1) {
+            tagHealth.noteList.remove(index);
+        }
+        if (choice == 2) {
+            tagStudy.noteList.remove(index);
+        }
     }
 
-    public void editContent(int index, String content) {
-        Note note = new Note(content);
-        this.noteList.set(index, note);
+    public void editContent(int choice, int index, String content) {
+        if (choice == 1 ) {
+            NoteInterface note = tagHealth.noteList.get(index);
+            note.setText(content);
+            tagHealth.noteList.set(index, note);
+        }
+        if (choice == 2) {
+            NoteInterface note = tagStudy.noteList.get(index);
+            note.setText(content);
+            tagStudy.noteList.set(index, note);
+        }
     }
 
     private void executeCommand(Command command) {
@@ -69,6 +83,7 @@ public class TODOList {
     }
 
     public void init() {
+        int id_owner = 1; //ZMIENIC PO ZROBIENIU UZYTKOWNIKOW, POTRZEBA DO DZIALANIA POLECEN CREATECOMMAND
         TODOList todo = this;
         NoteBuilderDate builderDate = new NoteBuilderDate();
         NoteBuilderWithoutDate builderWithoutDate = new NoteBuilderWithoutDate();
@@ -85,56 +100,65 @@ public class TODOList {
 
             switch (parts[0]) {
                 case "create" -> {
-                    Scanner scanner = new Scanner(System.in);
-                    System.out.println("Write with spacebar :\n\tHealth or Study?\n\tDate or WithoutDate\n\tIf \"Date\", write it yyyy-MM-dd");
-                    String choice = insertSomething(scanner);
-                    String[] choiceParts = choice.split(" ");
-                    choiceParts[0] = choiceParts[0].toLowerCase();
-                    choiceParts[1] = choiceParts[1].toLowerCase();
-
+                    int choice = Integer.parseInt(parts[1]);
                     StringBuilder content = new StringBuilder();
-                    for (int i = 1; i < parts.length; i++) {
-                        content.append(parts[i]).append(" ");
-                    }
-                    if (choiceParts[0].equals("health")) {
-                        if (choiceParts[1].equals("date")) {
-                            CreateCommand c = new CreateCommand(todo, content.toString(), builderDate, choiceParts[2], "Health");
-                            executeCommand(c);
-                        }
-                        else if (choiceParts[1].equals("withoutdate")) {
-                            CreateCommand c = new CreateCommand(todo, content.toString(), builderWithoutDate, "Health");
-                            executeCommand(c);
-                        }
-                    }
-
-                }
-                case "delete" -> {
-                    int index = Integer.parseInt(parts[1]);
-                    DeleteCommand c = new DeleteCommand(todo, index);
-                    executeCommand(c);
-                }
-                case "edit" -> {
-                    int index = Integer.parseInt(parts[1]);
-
-                    StringBuilder content = new StringBuilder();
-
                     for (int i = 2; i < parts.length; i++) {
                         content.append(parts[i]).append(" ");
                     }
+                    System.out.println("If You want note with date, write \"yes [date, for example 25-10-2023]\"\nIf You don't need date, write down \"no\"");
+                    String date = insertSomething(scan);
+                    String[] date_parts = date.split(" ");
+                    date_parts[0] = date_parts[0].toLowerCase();
 
-                    EditCommand c = new EditCommand(todo, index, content.toString());
+                        if (date_parts[0].equals("yes")) {
+                            CreateCommand c = new CreateCommand(todo, choice, content.toString(), builderDate, id_owner, date_parts[1]);
+                            executeCommand(c);
+                        }
+                        if (date_parts[0].equals("no")) {
+                            CreateCommand c = new CreateCommand(todo, choice, content.toString(), builderWithoutDate, id_owner);
+                            executeCommand(c);
+                        }
+
+                }
+                case "delete" -> {
+                    int choice = Integer.parseInt(parts[1]);
+                    int index = Integer.parseInt(parts[2]);
+                    DeleteCommand c = new DeleteCommand(todo, choice, index);
+                    executeCommand(c);
+                }
+                case "edit" -> {
+                    int choice = Integer.parseInt(parts[1]);
+                    int index = Integer.parseInt(parts[2]);
+
+                    StringBuilder content = new StringBuilder();
+
+                    for (int i = 3; i < parts.length; i++) {
+                        content.append(parts[i]).append(" ");
+                    }
+
+                    EditCommand c = new EditCommand(todo, choice, index, content.toString());
                     executeCommand(c);
                 }
                 case "print" -> {
                     System.out.println("=============================");
-                    for (Note note :
-                            noteList) {
-                        System.out.println("\n" + "Index: " + noteList.indexOf(note) + "\n" + note.getContent() + "\n");
+                    System.out.println("Health :");
+                    for (NoteInterface note :
+                            tagHealth.noteList) {
+                        System.out.println("\n" + "Index: " + tagHealth.noteList.indexOf(note) + "\n" + note.getText() + "\n");
                     }
-                    if (noteList.isEmpty()) {
-                        System.out.println("\nThere are no notes here!\n");
+                    if (tagHealth.noteList.isEmpty()) {
+                        System.out.println("\nThere are no notes in this tag!\n");
                     }
                     System.out.println("=============================");
+                    System.out.println("Study :");
+                    for (NoteInterface note :
+                            tagStudy.noteList) {
+                        System.out.println("\n" + "Index: " + tagStudy.noteList.indexOf(note) + "\n" + note.getText() + "\n");
+                    }
+                    if (tagStudy.noteList.isEmpty()) {
+                        System.out.println("\nThere are no notes in this tag!\n");
+                    }
+
                 }
                 case "save" -> {
                     SaveCommand c = new SaveCommand(todo, getNoteList());

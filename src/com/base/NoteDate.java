@@ -3,13 +3,24 @@ package com.base;
 import java.util.Date;
 
 public class NoteDate implements NoteInterface {
+    private int ID_owner;
     private String text;
     private String date;
     private Boolean done = false;
 
-    public NoteDate(String text, String date) {
+    public NoteDate(int id, String text, String date) {
+        this.ID_owner = id;
         this.text = text;
         this.date = date;
+    }
+
+    @Override
+    public String getText() {
+        return text;
+    }
+
+    public void setID_owner(int ID_owner) {
+        this.ID_owner = ID_owner;
     }
 
 
