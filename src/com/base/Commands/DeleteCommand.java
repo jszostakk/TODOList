@@ -1,4 +1,6 @@
-package com.base;
+package com.base.Commands;
+
+import com.base.*;
 
 public class DeleteCommand extends Command {
     int choice;

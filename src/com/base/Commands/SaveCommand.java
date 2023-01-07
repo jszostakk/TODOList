@@ -1,7 +1,10 @@
-package com.base;
+package com.base.Commands;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import com.base.Notes.*;
+import com.base.Tags.*;
+import com.base.*;
 
 public class SaveCommand extends Command {
     private final ArrayList<NoteInterface> healthBackup;

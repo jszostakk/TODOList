@@ -1,5 +1,8 @@
 package com.base;
 
+import com.base.Commands.*;
+import com.base.Notes.*;
+import com.base.Tags.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;

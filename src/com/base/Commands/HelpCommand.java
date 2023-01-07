@@ -1,6 +1,7 @@
-package com.base;
+package com.base.Commands;
 
 import java.util.ArrayList;
+import com.base.TODOList;
 
 public class HelpCommand extends Command {
     public String[] helpControls = {"\tTo create new note use command: \n\t\tCreate [1, if Health or 2, if Study] [Content that you want to put in your note]",
