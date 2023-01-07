@@ -1,9 +1,11 @@
-package com.base;
+package com.base.Commands;
+
+import com.base.TODOList;
 
 public abstract class Command {
     public TODOList todo;
 
-    Command(TODOList todo) {
+    public Command(TODOList todo) {
         this.todo = todo;
     }
 

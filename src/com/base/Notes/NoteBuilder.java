@@ -1,4 +1,4 @@
-package com.base;
+package com.base.Notes;
 
 public interface NoteBuilder {
     void setText(String text);

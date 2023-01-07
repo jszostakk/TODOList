@@ -1,4 +1,4 @@
-package com.base;
+package com.base.Notes;
 
 import java.util.Date;
 

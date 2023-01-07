@@ -1,5 +1,7 @@
-package com.base;
+package com.base.Commands;
 
+import com.base.Notes.*;
+import com.base.*;
 
 public class CreateCommand extends Command {
     String content;

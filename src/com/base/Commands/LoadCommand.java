@@ -1,6 +1,7 @@
-package com.base;
+package com.base.Commands;
 
 import java.util.ArrayList;
+import com.base.*;
 
 public class LoadCommand extends Command {
     Memento memento;
