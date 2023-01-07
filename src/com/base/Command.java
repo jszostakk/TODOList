@@ -1,6 +1,6 @@
 package com.base;
 
-abstract class Command {
+public abstract class Command {
     public TODOList todo;
 
     Command(TODOList todo) {
