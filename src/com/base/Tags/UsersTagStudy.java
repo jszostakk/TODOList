@@ -1,2 +1,4 @@
-package com.base.Tags;public class UsersTagStudy {
+package com.base.Tags;
+
+public class UsersTagStudy {
 }

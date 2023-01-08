@@ -11,6 +11,10 @@ public class User {
         this.password = password;
     }
 
+    public User(){
+        this.userId=-1;
+    }
+
     public int getUserId() {
         return userId;
     }
