@@ -8,6 +8,7 @@ import com.base.Tags.TagHealth;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class UserDb {
@@ -33,7 +34,11 @@ public class UserDb {
             return (User) userList.get(id);
         }
 
-        public static int getNextUserId(){
+        public static List<User> getUsers(){
+            return new ArrayList<User>(userList.values());
+        }
+
+    public static int getNextUserId(){
             return nextUserId;
         }
 }
