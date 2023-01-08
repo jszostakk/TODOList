@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class NoteWithoutDate implements NoteInterface{
     private int ID_owner;
-    private String text;
+    protected String text;
     private Boolean done = false;
 
     public NoteWithoutDate(int id, String text) {
