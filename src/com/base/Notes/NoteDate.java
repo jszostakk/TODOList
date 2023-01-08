@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class NoteDate implements NoteInterface {
     private int ID_owner;
-    private String text;
+    protected String text;
     private String date;
     private Boolean done = false;
 
@@ -39,5 +39,9 @@ public class NoteDate implements NoteInterface {
 
     public String toString() {
         return text + " " + date + " " + done;
+    }
+
+    public int getID_owner() {
+        return ID_owner;
     }
 }

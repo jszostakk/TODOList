@@ -23,6 +23,4 @@ public class NoteBuilderWithoutDate implements NoteBuilder {
         setID_owner(-1);
         setText(null);
     }
-
-
 }

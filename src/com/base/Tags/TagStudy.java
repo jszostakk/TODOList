@@ -3,9 +3,8 @@ package com.base.Tags;
 import java.util.ArrayList;
 import com.base.Notes.*;
 
-public class TagStudy implements Tag{
+public class TagStudy extends Tag{
     private static TagStudy instance;
-    public final ArrayList<NoteInterface> noteList = new ArrayList<>();
     private NoteBuilderDate noteBuilderDate;
     private NoteBuilderWithoutDate noteBuilderWithoutDate;
 
