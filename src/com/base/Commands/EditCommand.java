@@ -1,6 +1,7 @@
-package com.base;
+package com.base.Commands;
 
 import com.base.Commands.*;
+import com.base.*;
 
 public class EditCommand extends Command {
     int choice;

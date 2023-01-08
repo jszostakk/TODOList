@@ -1,13 +1,37 @@
 package com.base.Users;
 
 public class User {
-    private final int userId;
-    private string username;
-    private string password;
+    private int userId;
+    private String username;
+    private String password;
 
-    public User(string username, string password){
-        this.userId=UserDb.getNextId();
-        this.username=username;
-        this.password=password;
+    public User(String username, String password) {
+        this.userId=-1;
+        this.username = username;
+        this.password = password;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
