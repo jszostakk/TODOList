@@ -93,8 +93,7 @@ public class TODOList {
         return scan.nextLine();
     }
 
-    public void init() {
-        int id_owner = 1; //ZMIENIC PO ZROBIENIU UZYTKOWNIKOW, POTRZEBA DO DZIALANIA POLECEN CREATECOMMAND
+    public void init(int id_owner) {
         TODOList todo = this;
         NoteBuilderDate builderDate = new NoteBuilderDate();
         NoteBuilderWithoutDate builderWithoutDate = new NoteBuilderWithoutDate();

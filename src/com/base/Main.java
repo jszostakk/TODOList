@@ -26,7 +26,7 @@ public class Main {
             System.out.println("Wrong password");
             System.exit(-1);
         }
-        todo.init();
+        todo.init(userId);
     }
 
     public static void printUsers(){

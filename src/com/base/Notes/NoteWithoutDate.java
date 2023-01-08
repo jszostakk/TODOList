@@ -32,4 +32,8 @@ public class NoteWithoutDate implements NoteInterface{
     public String toString() {
         return text + " " + " " + done;
     }
+
+    public int getID_owner() {
+        return ID_owner;
+    }
 }
