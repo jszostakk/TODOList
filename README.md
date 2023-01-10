@@ -19,7 +19,7 @@ Projekt ma w założeniu tworzyć oraz przechowywać notatki w postaci ToDo list
 
   - Pamiątka - ręczne backupy  
 
-  - Iterator - iterowanie po notatkach jedna po drugiej (alternatywny widok) 
+  - Iterator - iterowanie po notatkach jedna po drugiej
   
 - ### Wzorce strukturalne:
 

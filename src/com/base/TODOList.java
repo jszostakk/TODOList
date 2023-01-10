@@ -202,6 +202,29 @@ public class TODOList {
                     }
 
                 }
+                case "printb64" -> {
+                    int choice = Integer.parseInt(parts[1]);
+                    int index = Integer.parseInt(parts[2]);
+                    NoteInterface note;
+
+                    if(choice==1){
+                        note =tagHealth.getNoteList().get(index);
+                    }
+                    else{
+                        note = tagStudy.getNoteList().get(index);
+                    }
+
+                    NoteInterface converted;
+                    if(note instanceof NoteWithoutDate){
+                        converted = new NoteWithoutDateBase64(note.getID_owner(),note.getText());
+                        System.out.println(converted.getText());
+                    }
+
+                    if(note instanceof NoteDate){
+                        converted = new NoteDateBase64(note.getID_owner(),note.getText(),note.getDate());
+                        System.out.println(converted.getText());
+                    }
+                }
                 case "save" -> {
                     SaveCommand c = new SaveCommand(todo, getTagHealth(), getTagStudy());
                     executeCommand(c);
