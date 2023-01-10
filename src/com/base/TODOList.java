@@ -186,7 +186,12 @@ public class TODOList {
                     System.out.println("Health :");
                     for (Iterator it = tagHealth.iterator(); it.hasNext(); ) {
                         NoteInterface note = (NoteInterface) it.next();
-                        System.out.println("\n" + "Index: " + tagHealth.getNoteList().indexOf(note) + "\n" + note.getText() + "\n");
+                        if(note.getDate() == null) {
+                            System.out.println("\n" + "Index: " + tagHealth.getNoteList().indexOf(note) + "\nTODO: " + note.getText() + "\nIs it done?: " + note.getDone() + "\n");
+                        }
+                        else {
+                            System.out.println("\n" + "Index: " + tagHealth.getNoteList().indexOf(note) + "\nDate: " + note.getDate() + "\nTODO: " + note.getText() + "\nIs it done?: " + note.getDone() + "\n");
+                        }
                     }
                     if (tagHealth.getNoteList().isEmpty()) {
                         System.out.println("\nThere are no notes in this tag!\n");
@@ -195,7 +200,12 @@ public class TODOList {
                     System.out.println("Study :");
                     for (Iterator it = tagStudy.iterator(); it.hasNext(); ) {
                         NoteInterface note = (NoteInterface) it.next();
-                        System.out.println("\n" + "Index: " + tagStudy.getNoteList().indexOf(note) + "\n" + note.getText() + "\n");
+                        if(note.getDate() == null) {
+                            System.out.println("\n" + "Index: " + tagStudy.getNoteList().indexOf(note) + "\nTODO: " + note.getText() + "\nIs it done?: " + note.getDone() + "\n");
+                        }
+                        else {
+                            System.out.println("\n" + "Index: " + tagStudy.getNoteList().indexOf(note) + "\nDate: " + note.getDate() + "\nTODO: " + note.getText() + "\nIs it done?: " + note.getDone() + "\n");
+                        }
                     }
                     if (tagStudy.getNoteList().isEmpty()) {
                         System.out.println("\nThere are no notes in this tag!\n");
@@ -237,6 +247,16 @@ public class TODOList {
                         int index = Integer.parseInt(insertSomething(scan));
                         LoadCommand c = new LoadCommand(todo, index, backups);
                         executeCommand(c);
+                    }
+                }
+                case "done" -> {
+                    int choice = Integer.parseInt(parts[1]);
+                    int index = Integer.parseInt(parts[2]);
+                    if (choice == 1) {
+                        tagHealth.getNoteList().get(index).setDone();
+                    }
+                    if (choice == 2) {
+                        tagStudy.getNoteList().get(index).setDone();
                     }
                 }
                 case "exit" -> {

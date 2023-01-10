@@ -5,7 +5,7 @@ import java.util.Date;
 public class NoteWithoutDate implements NoteInterface{
     private int ID_owner;
     protected String text;
-    private Boolean done = false;
+    private String done = "No";
 
     public NoteWithoutDate(int id, String text) {
         this.ID_owner = id;
@@ -17,7 +17,7 @@ public class NoteWithoutDate implements NoteInterface{
         return text;
     }
 
-    public Boolean getDone() {
+    public String getDone() {
         return done;
     }
     public String getDate() {
@@ -33,7 +33,7 @@ public class NoteWithoutDate implements NoteInterface{
     }
 
     public void setDone() {
-        this.done = true;
+        this.done = "Yes";
     }
 
     public String toString() {

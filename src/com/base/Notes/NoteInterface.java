@@ -3,8 +3,9 @@ package com.base.Notes;
 public interface NoteInterface {
     void setText(String content);
     String getText();
-    public int isDate();
-    public int getID_owner();
-    public Boolean getDone();
-    public String getDate();
+    int isDate();
+    int getID_owner();
+    String getDone();
+    String getDate();
+    void setDone();
 }

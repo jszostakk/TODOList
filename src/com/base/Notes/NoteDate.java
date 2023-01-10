@@ -6,7 +6,7 @@ public class NoteDate implements NoteInterface {
     private int ID_owner;
     protected String text;
     private String date;
-    private Boolean done = false;
+    private String done = "No";
 
     public NoteDate(int id, String text, String date) {
         this.ID_owner = id;
@@ -27,7 +27,7 @@ public class NoteDate implements NoteInterface {
         return date;
     }
 
-    public Boolean getDone() {
+    public String getDone() {
         return done;
     }
 
@@ -40,7 +40,7 @@ public class NoteDate implements NoteInterface {
     }
 
     public void setDone() {
-        this.done = true;
+        this.done = "Yes";
     }
 
     public String toString() {
