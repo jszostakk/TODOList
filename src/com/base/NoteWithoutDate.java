@@ -17,6 +17,17 @@ public class NoteWithoutDate implements NoteInterface{
         return text;
     }
 
+    public int getID_owner() {
+        return ID_owner;
+    }
+
+    public Boolean getDone() {
+        return done;
+    }
+    public String getDate() {
+        return null;
+    }
+
     public void setID_owner(int ID_owner) {
         this.ID_owner = ID_owner;
     }
@@ -31,5 +42,9 @@ public class NoteWithoutDate implements NoteInterface{
 
     public String toString() {
         return text + " " + " " + done;
+    }
+
+    public int isDate(){
+        return 1;
     }
 }

@@ -10,6 +10,8 @@ public class TODOList {
 
     private final TagHealth tagHealth = TagHealth.getInstance();
     private final TagStudy tagStudy = TagStudy.getInstance();
+    private final NoteBuilderDate builderDate = new NoteBuilderDate();
+    private final NoteBuilderWithoutDate builderWithoutDate = new NoteBuilderWithoutDate();
 
 
     public void addToTagHealth(NoteInterface note) {
@@ -68,16 +70,43 @@ public class TODOList {
         }
     }
 
+
     public void editContent(int choice, int index, String content) {
         if (choice == 1 ) {
-            NoteInterface note = tagHealth.noteList.get(index);
-            note.setText(content);
-            tagHealth.noteList.set(index, note);
+            int builderChoice = tagHealth.noteList.get(index).isDate();
+            if (builderChoice == 1) {
+                builderDate.setID_owner(tagHealth.noteList.get(index).getID_owner());
+                builderDate.setDate(tagHealth.noteList.get(index).getDate());
+                builderDate.setText(content);
+                NoteDate newNote = builderDate.getResult();
+                builderDate.reset();
+                tagHealth.noteList.set(index, newNote);
+            }
+            else if (builderChoice == 0) {
+                builderWithoutDate.setID_owner(tagHealth.noteList.get(index).getID_owner());
+                builderWithoutDate.setText(content);
+                NoteWithoutDate newNote = builderWithoutDate.getResult();
+                builderWithoutDate.reset();
+                tagHealth.noteList.set(index, newNote);
+            }
         }
         if (choice == 2) {
-            NoteInterface note = tagStudy.noteList.get(index);
-            note.setText(content);
-            tagStudy.noteList.set(index, note);
+            int builderChoice = tagStudy.noteList.get(index).isDate();
+            if (builderChoice == 1) {
+                builderDate.setID_owner(tagStudy.noteList.get(index).getID_owner());
+                builderDate.setDate(tagStudy.noteList.get(index).getDate());
+                builderDate.setText(content);
+                NoteDate newNote = builderDate.getResult();
+                builderDate.reset();
+                tagStudy.noteList.set(index, newNote);
+            }
+            else if (builderChoice == 0) {
+                builderWithoutDate.setID_owner(tagStudy.noteList.get(index).getID_owner());
+                builderWithoutDate.setText(content);
+                NoteWithoutDate newNote = builderWithoutDate.getResult();
+                builderWithoutDate.reset();
+                tagStudy.noteList.set(index, newNote);
+            }
         }
     }
 
@@ -93,8 +122,6 @@ public class TODOList {
     public void init() {
         int id_owner = 1; //ZMIENIC PO ZROBIENIU UZYTKOWNIKOW, POTRZEBA DO DZIALANIA POLECEN CREATECOMMAND
         TODOList todo = this;
-        NoteBuilderDate builderDate = new NoteBuilderDate();
-        NoteBuilderWithoutDate builderWithoutDate = new NoteBuilderWithoutDate();
 
         HelpCommand initialHelp = new HelpCommand(todo);
         executeCommand(initialHelp);

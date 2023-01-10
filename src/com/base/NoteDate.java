@@ -23,7 +23,17 @@ public class NoteDate implements NoteInterface {
         this.ID_owner = ID_owner;
     }
 
+    public int getID_owner() {
+        return ID_owner;
+    }
 
+    public String getDate() {
+        return date;
+    }
+
+    public Boolean getDone() {
+        return done;
+    }
 
     public void setText(String text) {
         this.text = text;
@@ -39,5 +49,9 @@ public class NoteDate implements NoteInterface {
 
     public String toString() {
         return text + " " + date + " " + done;
+    }
+
+    public int isDate(){
+        return 0;
     }
 }
