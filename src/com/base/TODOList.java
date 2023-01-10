@@ -15,6 +15,8 @@ public class TODOList {
 
     private UserTagProxy tagHealth;
     private UserTagProxy tagStudy;
+    NoteBuilderDate builderDate = new NoteBuilderDate();
+    NoteBuilderWithoutDate builderWithoutDate = new NoteBuilderWithoutDate();
 
 
     public void addToTagHealth(NoteInterface note) {
@@ -75,14 +77,40 @@ public class TODOList {
 
     public void editContent(int choice, int index, String content) {
         if (choice == 1 ) {
-            NoteInterface note = tagHealth.getNoteList().get(index);
-            note.setText(content);
-            tagHealth.getNoteList().set(index, note);
+            int builderChoice = tagHealth.getNoteList().get(index).isDate();
+            if (builderChoice == 1) {
+                builderDate.setID_owner(tagHealth.getNoteList().get(index).getID_owner());
+                builderDate.setDate(tagHealth.getNoteList().get(index).getDate());
+                builderDate.setText(content);
+                NoteDate newNote = builderDate.getResult();
+                builderDate.reset();
+                tagHealth.getNoteList().set(index, newNote);
+            }
+            else if (builderChoice == 0) {
+                builderWithoutDate.setID_owner(tagHealth.getNoteList().get(index).getID_owner());
+                builderWithoutDate.setText(content);
+                NoteWithoutDate newNote = builderWithoutDate.getResult();
+                builderWithoutDate.reset();
+                tagHealth.getNoteList().set(index, newNote);
+            }
         }
         if (choice == 2) {
-            NoteInterface note = tagStudy.getNoteList().get(index);
-            note.setText(content);
-            tagStudy.getNoteList().set(index, note);
+            int builderChoice = tagStudy.getNoteList().get(index).isDate();
+            if (builderChoice == 1) {
+                builderDate.setID_owner(tagStudy.getNoteList().get(index).getID_owner());
+                builderDate.setDate(tagStudy.getNoteList().get(index).getDate());
+                builderDate.setText(content);
+                NoteDate newNote = builderDate.getResult();
+                builderDate.reset();
+                tagStudy.getNoteList().set(index, newNote);
+            }
+            else if (builderChoice == 0) {
+                builderWithoutDate.setID_owner(tagStudy.getNoteList().get(index).getID_owner());
+                builderWithoutDate.setText(content);
+                NoteWithoutDate newNote = builderWithoutDate.getResult();
+                builderWithoutDate.reset();
+                tagStudy.getNoteList().set(index, newNote);
+            }
         }
     }
 
@@ -100,8 +128,6 @@ public class TODOList {
         tagStudy = new UserTagProxy(id_owner,TagStudy.getInstance());
 
         TODOList todo = this;
-        NoteBuilderDate builderDate = new NoteBuilderDate();
-        NoteBuilderWithoutDate builderWithoutDate = new NoteBuilderWithoutDate();
 
         HelpCommand initialHelp = new HelpCommand(todo);
         executeCommand(initialHelp);
