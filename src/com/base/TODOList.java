@@ -8,6 +8,7 @@ import com.base.Users.UserDb;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class TODOList {
@@ -183,8 +184,8 @@ public class TODOList {
                 case "print" -> {
                     System.out.println("=============================");
                     System.out.println("Health :");
-                    for (NoteInterface note :
-                            tagHealth.getNoteList()) {
+                    for (Iterator it = tagHealth.iterator(); it.hasNext(); ) {
+                        NoteInterface note = (NoteInterface) it.next();
                         System.out.println("\n" + "Index: " + tagHealth.getNoteList().indexOf(note) + "\n" + note.getText() + "\n");
                     }
                     if (tagHealth.getNoteList().isEmpty()) {
@@ -192,8 +193,8 @@ public class TODOList {
                     }
                     System.out.println("=============================");
                     System.out.println("Study :");
-                    for (NoteInterface note :
-                            tagStudy.getNoteList()) {
+                    for (Iterator it = tagStudy.iterator(); it.hasNext(); ) {
+                        NoteInterface note = (NoteInterface) it.next();
                         System.out.println("\n" + "Index: " + tagStudy.getNoteList().indexOf(note) + "\n" + note.getText() + "\n");
                     }
                     if (tagStudy.getNoteList().isEmpty()) {
