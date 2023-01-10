@@ -3,6 +3,8 @@ package com.base;
 import com.base.Commands.*;
 import com.base.Notes.*;
 import com.base.Tags.*;
+import com.base.Users.UserDb;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,22 +13,22 @@ import java.util.Scanner;
 public class TODOList {
     private final ArrayList<Memento> backups = new ArrayList<>();
 
-    private final TagHealth tagHealth = TagHealth.getInstance();
-    private final TagStudy tagStudy = TagStudy.getInstance();
+    private UserTagProxy tagHealth;
+    private UserTagProxy tagStudy;
 
 
     public void addToTagHealth(NoteInterface note) {
-        this.tagHealth.noteList.add(note);
+        this.tagHealth.getNoteList().add(note);
     }
     public void addToTagStudy(NoteInterface note) {
-        this.tagStudy.noteList.add(note);
+        this.tagStudy.getNoteList().add(note);
     }
 
-    public TagHealth getTagHealth() {
+    public UserTagProxy getTagHealth() {
         return tagHealth;
     }
 
-    public TagStudy getTagStudy() {
+    public UserTagProxy getTagStudy() {
         return tagStudy;
     }
 
@@ -56,31 +58,31 @@ public class TODOList {
 
 
     public void setNoteList(ArrayList<NoteInterface> healthNotes, ArrayList<NoteInterface> studyNotes) {
-        tagHealth.noteList.clear();
-        tagHealth.noteList.addAll(healthNotes);
-        tagStudy.noteList.clear();
-        tagStudy.noteList.addAll(studyNotes);
+        tagHealth.getNoteList().clear();
+        tagHealth.getNoteList().addAll(healthNotes);
+        tagStudy.getNoteList().clear();
+        tagStudy.getNoteList().addAll(studyNotes);
     }
 
     public void removeFromList(int choice, int index) {
         if (choice == 1) {
-            tagHealth.noteList.remove(index);
+            tagHealth.getNoteList().remove(index);
         }
         if (choice == 2) {
-            tagStudy.noteList.remove(index);
+            tagStudy.getNoteList().remove(index);
         }
     }
 
     public void editContent(int choice, int index, String content) {
         if (choice == 1 ) {
-            NoteInterface note = tagHealth.noteList.get(index);
+            NoteInterface note = tagHealth.getNoteList().get(index);
             note.setText(content);
-            tagHealth.noteList.set(index, note);
+            tagHealth.getNoteList().set(index, note);
         }
         if (choice == 2) {
-            NoteInterface note = tagStudy.noteList.get(index);
+            NoteInterface note = tagStudy.getNoteList().get(index);
             note.setText(content);
-            tagStudy.noteList.set(index, note);
+            tagStudy.getNoteList().set(index, note);
         }
     }
 
@@ -94,6 +96,9 @@ public class TODOList {
     }
 
     public void init(int id_owner) {
+        tagHealth = new UserTagProxy(id_owner,TagHealth.getInstance());
+        tagStudy = new UserTagProxy(id_owner,TagStudy.getInstance());
+
         TODOList todo = this;
         NoteBuilderDate builderDate = new NoteBuilderDate();
         NoteBuilderWithoutDate builderWithoutDate = new NoteBuilderWithoutDate();
@@ -153,19 +158,19 @@ public class TODOList {
                     System.out.println("=============================");
                     System.out.println("Health :");
                     for (NoteInterface note :
-                            tagHealth.noteList) {
-                        System.out.println("\n" + "Index: " + tagHealth.noteList.indexOf(note) + "\n" + note.getText() + "\n");
+                            tagHealth.getNoteList()) {
+                        System.out.println("\n" + "Index: " + tagHealth.getNoteList().indexOf(note) + "\n" + note.getText() + "\n");
                     }
-                    if (tagHealth.noteList.isEmpty()) {
+                    if (tagHealth.getNoteList().isEmpty()) {
                         System.out.println("\nThere are no notes in this tag!\n");
                     }
                     System.out.println("=============================");
                     System.out.println("Study :");
                     for (NoteInterface note :
-                            tagStudy.noteList) {
-                        System.out.println("\n" + "Index: " + tagStudy.noteList.indexOf(note) + "\n" + note.getText() + "\n");
+                            tagStudy.getNoteList()) {
+                        System.out.println("\n" + "Index: " + tagStudy.getNoteList().indexOf(note) + "\n" + note.getText() + "\n");
                     }
-                    if (tagStudy.noteList.isEmpty()) {
+                    if (tagStudy.getNoteList().isEmpty()) {
                         System.out.println("\nThere are no notes in this tag!\n");
                     }
 
@@ -185,7 +190,7 @@ public class TODOList {
                     }
                 }
                 case "exit" -> {
-                    return;
+                    System.exit(0);
                 }
                 default -> {
                     HelpCommand c = new HelpCommand(todo);

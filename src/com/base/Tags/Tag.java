@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public abstract class Tag implements Iterable {
-    private final ArrayList<NoteInterface> noteList = new ArrayList<>();
+    ArrayList<NoteInterface> noteList = new ArrayList<>();
 
     public ArrayList<NoteInterface> getNoteList(){
         return this.noteList;

@@ -14,10 +14,10 @@ public class SaveCommand extends Command {
         return new Memento(this.healthBackup, this.studyBackup);
     }
 
-    public SaveCommand(TODOList todo, TagHealth tagHealth, TagStudy tagStudy) {
+    public SaveCommand(TODOList todo, UserTagProxy tagHealth, UserTagProxy tagStudy) {
         super(todo);
-        this.healthBackup = new ArrayList<>(tagHealth.noteList);
-        this.studyBackup = new ArrayList<>(tagStudy.noteList);
+        this.healthBackup = new ArrayList<>(tagHealth.getNoteList());
+        this.studyBackup = new ArrayList<>(tagStudy.getNoteList());
     }
 
     @Override
