@@ -19,6 +19,14 @@ public class TODOList {
     NoteBuilderDate builderDate = new NoteBuilderDate();
     NoteBuilderWithoutDate builderWithoutDate = new NoteBuilderWithoutDate();
 
+    public TODOList(UserTagProxy tagHealth, UserTagProxy tagStudy, NoteBuilderDate builderDate, NoteBuilderWithoutDate builderWithoutDate) {
+        this.tagHealth = tagHealth;
+        this.tagStudy = tagStudy;
+        this.builderDate = builderDate;
+        this.builderWithoutDate = builderWithoutDate;
+    }
+
+    public TODOList(){};
 
     public void addToTagHealth(NoteInterface note) {
         this.tagHealth.getNoteList().add(note);

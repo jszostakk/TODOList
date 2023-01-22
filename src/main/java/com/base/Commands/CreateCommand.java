@@ -35,7 +35,6 @@ public class CreateCommand extends Command {
         NoteInterface note = builder.getResult();
         builder.reset();
         if(choice == 1) {
-            //System.out.println(note);
             todo.addToTagHealth(note);
         }
         if(choice == 2) {
