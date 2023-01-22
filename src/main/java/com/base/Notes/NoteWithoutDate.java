@@ -7,7 +7,7 @@ public class NoteWithoutDate implements NoteInterface{
     protected String text;
     private String done = "No";
 
-    protected NoteWithoutDate(int id, String text) {
+    public NoteWithoutDate(int id, String text) {
         this.ID_owner = id;
         this.text = text;
     }

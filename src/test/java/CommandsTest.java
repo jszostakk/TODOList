@@ -1,28 +1,29 @@
 import com.base.Commands.CreateCommand;
 import com.base.Notes.NoteBuilderWithoutDate;
+import com.base.Notes.NoteWithoutDate;
 import com.base.TODOList;
-import com.base.Tags.Tag;
+import com.base.Tags.TagHealth;
 import com.base.Tags.UserTagProxy;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CommandsTest {
-    private TODOList todoList = new TODOList();
+    private final int idOwner = 0;
+    private final TODOList todoList = new TODOList(new UserTagProxy(idOwner, TagHealth.getInstance()));
 
     @Test
     public void createWithoutDateTest(){
         int choice = 1;
         String content = "message";
         NoteBuilderWithoutDate builder = new NoteBuilderWithoutDate();
-        int idOwner = 0;
 
-        Tag instance; //jak zainicjalizować obiekt Tag?? XD
-        UserTagProxy stub1 = new UserTagProxy(0, instance);
+        UserTagProxy tagHealthInstance = new UserTagProxy(idOwner, TagHealth.getInstance());
+        tagHealthInstance.getNoteList().add(new NoteWithoutDate(idOwner, content));
 
-        CreateCommand c = new CreateCommand(todoList, choice, content.toString(), builder, idOwner);
+        CreateCommand c = new CreateCommand(todoList, choice, content, builder, idOwner);
         c.execute();
 
-        assertEquals(todoList.getTagHealth(), stub1);
+        assertEquals(todoList.getTagHealth().getNoteList().get(0).toString(), tagHealthInstance.getNoteList().get(0).toString());
     }
 }

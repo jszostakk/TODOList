@@ -8,7 +8,7 @@ public class NoteDate implements NoteInterface {
     private String date;
     private String done = "No";
 
-    protected NoteDate(int id, String text, String date) {
+    public NoteDate(int id, String text, String date) {
         this.ID_owner = id;
         this.text = text;
         this.date = date;

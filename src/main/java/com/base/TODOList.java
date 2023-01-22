@@ -26,7 +26,11 @@ public class TODOList {
         this.builderWithoutDate = builderWithoutDate;
     }
 
-    public TODOList(){};
+    public TODOList(){}
+
+    public TODOList(UserTagProxy tagHealth) {
+       this.tagHealth = tagHealth;
+    }
 
     public void addToTagHealth(NoteInterface note) {
         this.tagHealth.getNoteList().add(note);
@@ -131,7 +135,38 @@ public class TODOList {
         System.out.print("input-> ");
         return scan.nextLine();
     }
-
+    /*
+    public String printNotes() {
+        System.out.println("=============================");
+        System.out.println("Health :");
+        for (Iterator it = tagHealth.iterator(); it.hasNext(); ) {
+            NoteInterface note = (NoteInterface) it.next();
+            if(note.getDate() == null) {
+                System.out.println("\n" + "Index: " + tagHealth.getNoteList().indexOf(note) + "\nTODO: " + note.getText() + "\nIs it done?: " + note.getDone() + "\n");
+            }
+            else {
+                System.out.println("\n" + "Index: " + tagHealth.getNoteList().indexOf(note) + "\nDate: " + note.getDate() + "\nTODO: " + note.getText() + "\nIs it done?: " + note.getDone() + "\n");
+            }
+        }
+        if (tagHealth.getNoteList().isEmpty()) {
+            System.out.println("\nThere are no notes in this tag!\n");
+        }
+        System.out.println("=============================");
+        System.out.println("Study :");
+        for (Iterator it = tagStudy.iterator(); it.hasNext(); ) {
+            NoteInterface note = (NoteInterface) it.next();
+            if(note.getDate() == null) {
+                System.out.println("\n" + "Index: " + tagStudy.getNoteList().indexOf(note) + "\nTODO: " + note.getText() + "\nIs it done?: " + note.getDone() + "\n");
+            }
+            else {
+                System.out.println("\n" + "Index: " + tagStudy.getNoteList().indexOf(note) + "\nDate: " + note.getDate() + "\nTODO: " + note.getText() + "\nIs it done?: " + note.getDone() + "\n");
+            }
+        }
+        if (tagStudy.getNoteList().isEmpty()) {
+            System.out.println("\nThere are no notes in this tag!\n");
+        }
+    }
+*/
     public void init(int id_owner) {
         tagHealth = new UserTagProxy(id_owner,TagHealth.getInstance());
         tagStudy = new UserTagProxy(id_owner,TagStudy.getInstance());
