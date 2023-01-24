@@ -14,21 +14,33 @@ import static org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInA
 
 public class UserDbTest {
     @Test
-    public void getUserTest(){
+    public void getUserTest() {
+
+        //given
         int id = UserDb.getNextUserId();
-        User testUser = new User("aa","123");
+        User testUser = new User("aa", "123");
         UserDb.addUser(testUser);
+
+        //when
         User userFromDb = UserDb.getUser(id);
-        assertEquals(testUser,userFromDb);
+
+        //then
+        assertEquals(testUser, userFromDb);
     }
 
     @Test
-    public void getUsersTest(){
-        User testUser1 = new User("aa","123");
-        User testUser2 = new User("bb","321");
+    public void getUsersTest() {
+
+        //given
+        User testUser1 = new User("aa", "123");
+        User testUser2 = new User("bb", "321");
         UserDb.addUser(testUser1);
         UserDb.addUser(testUser2);
+
+        //when
         List<User> userList = UserDb.getUsers();
+
+        //then
         MatcherAssert.assertThat(userList, containsInAnyOrder(
                 hasProperty("username", is("aa")),
                 hasProperty("username", is("bb"))
@@ -36,8 +48,14 @@ public class UserDbTest {
     }
 
     @Test
-    public void getInstanceTest(){
+    public void getInstanceTest() {
+
+        //given
+
+        //when
         UserDb userdb = UserDb.getInstance();
+
+        //then
         Assertions.assertNotNull(userdb);
     }
 }

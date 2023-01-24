@@ -11,25 +11,31 @@ public class UserTest {
     User testUser;
 
     @BeforeEach
-    public void initialize(){
+    public void initialize() {
         testUser = new User("aa", "123");
     }
+
     @Test
-    public void getUserIdTest(){
-        assertEquals(-1,testUser.getUserId());
+    public void getUserIdTest() {
+        assertEquals(-1, testUser.getUserId());
     }
 
     @Test
-    public void getUsernameTest(){
-        assertEquals("aa",testUser.getUsername());
+    public void getUsernameTest() {
+        assertEquals("aa", testUser.getUsername());
     }
 
     @Test
-    public void setUserIdTest(){
+    public void setUserIdTest() {
+
+        //given
         User userMock = mock(User.class);
         when(userMock.getUserId()).thenReturn(4);
 
+        //when
         int userId = userMock.getUserId();
+
+        //then
         assertNotEquals(-1, userId);
     }
 }
